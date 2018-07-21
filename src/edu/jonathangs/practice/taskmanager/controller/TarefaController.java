@@ -63,7 +63,7 @@ public class TarefaController extends HttpServlet {
 			} else {
 				final String codigo = request.getParameter("codigo");
 				final String valor = request.getParameter("ckbConcluido");
-				int status = Integer.valueOf(valor);
+				int status = "concluida".equals(valor) ? 1 : 0;
 				tarefa.setId(Integer.valueOf(codigo));
 				tarefa.setTitulo(titulo);
 				tarefa.setDescricao(descricao);

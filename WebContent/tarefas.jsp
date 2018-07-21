@@ -61,24 +61,14 @@
 					<td>${ tarefa.getAlteracao() }</td>
 					<td>${ tarefa.getConclusao() }</td>
 					<td>
-						<c:choose>
-							<c:when test="${ tarefa.isConcluida() }">
-								<a href="#" data-toggle="modal" data-target="#editarModal-${ tarefa.getId() }" class="disabled">
-									<span class="glyphicon glyphicon-pencil"></span>
-								</a>
-								<a href="#" data-toggle="modal" data-target="#removerModal-${ tarefa.getId() }" class="disabled">
-									<span class="glyphicon glyphicon-remove"></span>
-								</a>
-							</c:when>
-							<c:otherwise>
-								<a href="#" data-toggle="modal" data-target="#editarModal-${ tarefa.getId() }">
-									<span class="glyphicon glyphicon-pencil"></span>
-								</a>
-								<a href="#" data-toggle="modal" data-target="#removerModal-${ tarefa.getId() }">
-									<span class="glyphicon glyphicon-remove"></span>
-								</a>
-							</c:otherwise>
-						</c:choose>
+						<c:if test="${ !tarefa.isConcluida() }">
+							<a href="#" data-toggle="modal" data-target="#editarModal-${ tarefa.getId() }">
+								<span class="glyphicon glyphicon-pencil"></span>
+							</a>
+							<a href="#" data-toggle="modal" data-target="#removerModal-${ tarefa.getId() }">
+								<span class="glyphicon glyphicon-remove"></span>
+							</a>
+						</c:if>
 					</td>
 				</tr>
 				<!--MODAL DO EXCLUIR -->
@@ -148,7 +138,7 @@
 										<label for="inputCkb" class="col-sm-2 control-label">
 											Status: </label>
 										<input class="form-control" type="checkbox" name="ckbConcluido"
-												value="${ tarefa.getStatus() }" />
+												value="concluida" <c:if test="${ tarefa.isConcluida() }">checked</c:if>/>
 									</div>
 									<br />
 								</div>
